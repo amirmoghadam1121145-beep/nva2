@@ -1,0 +1,20 @@
+# These are HOST-machine dependencies -- for two purposes only:
+#
+#   1) running `python main.py` on a laptop to smoke-test NOVA's logic
+#      before building an APK (falls back to console input + print/
+#      pyttsx3 automatically, see nova/voice/*_service.py)
+#   2) running python-for-android (p4a) itself to build the APK
+#      (see build_apk.sh -- Buildozer is intentionally NOT used)
+#
+# They are NOT what ships inside the APK. What actually gets bundled
+# into the Android app is controlled separately by the --requirements
+# flag passed to `p4a apk` inside build_apk.sh (python3, kivy, plyer,
+# pyjnius, android), which python-for-android downloads and compiles
+# for the phone's CPU architecture during the build.
+
+kivy==2.3.0
+plyer==2.1.0
+pyttsx3==2.90            # optional, desktop test-mode TTS fallback only
+python-for-android        # build tool: turns this project into an APK via Gradle + Android SDK/NDK
+cython==0.29.37
+sh                        # dependency of python-for-android's build steps
